@@ -58,7 +58,7 @@ export default function Menu() {
               </Link>
               <p className="text-gray-600 mt-2">{item.description}</p>
               <div className="mt-4 flex items-center justify-between">
-                <span className="bg-red-500 font-bold">
+                <span className="text-red-500 font-bold">
                   {item.price.toFixed(2)} €
                 </span>
                 <button
