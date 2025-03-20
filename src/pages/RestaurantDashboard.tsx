@@ -87,7 +87,7 @@ export default function RestaurantDashboard() {
               <h3 className="text-xl font-semibold">{item.name}</h3>
               <p className="text-gray-600 mt-2">{item.description}</p>
               <div className="mt-4 flex items-center justify-between">
-                <span className="text-purple-600 font-bold">
+                <span className="text-red-600 font-bold">
                   {item.price.toFixed(2)} €
                 </span>
                 <div className="flex space-x-2">
@@ -125,7 +125,7 @@ export default function RestaurantDashboard() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                   required
                 />
               </div>
@@ -137,7 +137,7 @@ export default function RestaurantDashboard() {
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                   required
                 />
               </div>
@@ -151,7 +151,7 @@ export default function RestaurantDashboard() {
                   step="0.01"
                   value={formData.price}
                   onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                   required
                 />
               </div>
@@ -164,7 +164,7 @@ export default function RestaurantDashboard() {
                   type="url"
                   value={formData.image}
                   onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                   required
                 />
               </div>
@@ -176,7 +176,7 @@ export default function RestaurantDashboard() {
                 <select
                   value={formData.category}
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                 >
                   <option value="burgers">Burgers</option>
                   <option value="pizza">Pizzas</option>

@@ -49,7 +49,7 @@ export default function ProductDetail() {
             <p className="text-gray-600 mb-6">{product.description}</p>
             
             <div className="mb-6">
-              <p className="text-2xl font-bold text-purple-600">
+              <p className="text-2xl font-bold text-red-600">
                 {product.price.toFixed(2)} €
               </p>
             </div>

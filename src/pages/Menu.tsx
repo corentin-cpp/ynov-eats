@@ -52,7 +52,7 @@ export default function Menu() {
             </Link>
             <div className="p-4">
               <Link to={`/product/${item.id}`}>
-                <h3 className="text-xl font-semibold hover:text-purple-600">
+                <h3 className="text-xl font-semibold hover:text-red-600">
                   {item.name}
                 </h3>
               </Link>
