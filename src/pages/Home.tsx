@@ -63,7 +63,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold">Catégories</h2>
           <Link
             to="/menu"
-            className="text-purple-600 flex items-center hover:text-purple-700"
+            className="text-red-500 flex items-center hover:text-red-600"
           >
             Voir tout <ChevronRight className="h-4 w-4" />
           </Link>
