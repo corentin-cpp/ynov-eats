@@ -49,10 +49,10 @@ export default function Home() {
               Découvrez les meilleurs restaurants près de chez vous
             </p>
             <Link
-              to="/menu"
-              className="inline-block bg-purple-600 text-white px-8 py-3 rounded-full hover:bg-purple-700 transition"
-            >
-              Commander maintenant
+             to="/menu"
+             className="inline-block bg-red-500 text-white px-8 py-3 rounded-full hover:bg-red-600 transition"
+           >
+             Commander maintenant
             </Link>
           </div>
         </div>
