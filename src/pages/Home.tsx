@@ -46,11 +46,11 @@ export default function Home() {
               La livraison de vos plats préférés
             </h1>
             <p className="text-xl text-white">
-              Découvrez les meilleurs restaurants près de chez vousssssssss
+              Découvrez les meilleurs restaurants près de chez vous
             </p>
             <Link
               to="/menu"
-              className="inline-block bg-purple-600 text-white px-8 py-3 rounded-full hover:bg-purple-700 transition"
+              className="inline-block bg-red-500 text-white px-8 py-3 rounded-full hover:bg-red-600 transition"
             >
               Commander maintenant
             </Link>
