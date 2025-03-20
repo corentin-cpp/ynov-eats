@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, ShoppingCart, User, UtensilsCrossed } from 'lucide-react';
+import { Search, ShoppingCart, User } from 'lucide-react';
 import { useStore } from '../store';
-
+import logo from '../assets/logo_Version_finale.png'; 
 export default function Navbar() {
   const { user, cart } = useStore();
   const navigate = useNavigate();
@@ -12,8 +12,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center space-x-2">
-            <UtensilsCrossed className="h-8 w-8 text-purple-600" />
-            <span className="text-xl font-bold text-purple-600">YnovEat</span>
+            <img src={logo} alt="YnovEat" className="h-8 w-auto" />
           </Link>
 
           <div className="flex-1 max-w-xl mx-8">
