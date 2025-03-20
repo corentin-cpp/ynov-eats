@@ -20,7 +20,7 @@ export default function Navbar() {
               <input
                 type="text"
                 placeholder="Rechercher un plat..."
-                className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600"
               />
               <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
             </div>
@@ -30,7 +30,7 @@ export default function Navbar() {
             {user?.isRestaurant && (
               <Link
                 to="/restaurant/dashboard"
-                className="text-gray-700 hover:text-purple-600"
+                className="text-gray-700 hover:text-red-600"
               >
                 Dashboard
               </Link>
@@ -38,7 +38,7 @@ export default function Navbar() {
             <Link to="/cart" className="relative">
               <ShoppingCart className="h-6 w-6 text-gray-700" />
               {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-purple-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {cart.length}
                 </span>
               )}
