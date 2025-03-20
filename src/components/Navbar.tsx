@@ -51,8 +51,8 @@ export default function Navbar() {
               </Link>
             ) : (
               <Link
-                to="/login"
-                className="text-red-500 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition"
+               to="/login"
+                className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
               >
                 Connexion
               </Link>
