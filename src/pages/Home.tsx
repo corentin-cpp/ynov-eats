@@ -52,7 +52,7 @@ export default function Home() {
              to="/menu"
              className="inline-block bg-red-500 text-white px-8 py-3 rounded-full hover:bg-red-600 transition"
            >
-             Commander maintenant
+             Commander maintenantttttttttttt
             </Link>
           </div>
         </div>
