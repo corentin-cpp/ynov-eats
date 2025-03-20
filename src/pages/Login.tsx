@@ -70,7 +70,7 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition"
+            className="w-full bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
           >
             Se connecter
           </button>

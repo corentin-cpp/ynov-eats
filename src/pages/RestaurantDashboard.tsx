@@ -68,7 +68,7 @@ export default function RestaurantDashboard() {
         <h1 className="text-3xl font-bold">Gestion des plats</h1>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition flex items-center"
+          className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition flex items-center"
         >
           <Plus className="h-5 w-5 mr-2" />
           Ajouter un plat
@@ -188,7 +188,7 @@ export default function RestaurantDashboard() {
               <div className="flex space-x-3">
                 <button
                   type="submit"
-                  className="flex-1 bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition"
+                  className="flex-1 bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
                 >
                   {editingItem ? 'Modifier' : 'Ajouter'}
                 </button>

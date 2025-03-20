@@ -27,7 +27,7 @@ export default function Menu() {
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-full whitespace-nowrap ${
                 selectedCategory === category
-                  ? 'bg-purple-600 text-white'
+                  ? 'bg-red-500 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
@@ -58,11 +58,11 @@ export default function Menu() {
               </Link>
               <p className="text-gray-600 mt-2">{item.description}</p>
               <div className="mt-4 flex items-center justify-between">
-                <span className="text-purple-600 font-bold">
+                <span className="bg-red-500 font-bold">
                   {item.price.toFixed(2)} €
                 </span>
                 <button
-                  className="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition"
+                  className="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
                   onClick={() => addToCart({ ...item, quantity: 1 })}
                 >
                   Ajouter

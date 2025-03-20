@@ -72,7 +72,7 @@ export default function ProductDetail() {
 
             <button
               onClick={handleAddToCart}
-              className="w-full bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition"
+              className="w-full bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition"
             >
               Ajouter au panier - {(product.price * quantity).toFixed(2)} €
             </button>

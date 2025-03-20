@@ -17,7 +17,7 @@ export default function Profile() {
     <div className="max-w-4xl mx-auto">
       <div className="bg-white rounded-lg shadow-md p-6">
         <div className="flex items-center space-x-4 mb-6">
-          <div className="bg-purple-100 p-3 rounded-full">
+          <div className="bg-red-100 p-3 rounded-full">
             <User className="h-8 w-8 text-purple-600" />
           </div>
           <div>
