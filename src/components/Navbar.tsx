@@ -14,7 +14,7 @@ export default function Navbar() {
           <Link to="/" className="flex items-center space-x-2">
             <UtensilsCrossed className="h-8 w-8 text-red-600" />
             <img
-              src="/public/logo_Version_finale.png"
+              src="https://ibb.co/ynyx5zCg"
               alt="YnovEat Logo"
               className="h-8 w-auto object-contain"
             />
