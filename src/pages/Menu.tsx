@@ -44,7 +44,7 @@ export default function Menu() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
       </div>
     );
   }
@@ -60,7 +60,7 @@ export default function Menu() {
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-full whitespace-nowrap ${
                 selectedCategory === category
-                  ? 'bg-purple-600 text-white'
+                  ? 'bg-red-600 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
@@ -85,17 +85,17 @@ export default function Menu() {
             </Link>
             <div className="p-4">
               <Link to={`/product/${item.id}`}>
-                <h3 className="text-xl font-semibold hover:text-purple-600">
+                <h3 className="text-xl font-semibold hover:text-red-600">
                   {item.name}
                 </h3>
               </Link>
               <p className="text-gray-600 mt-2">{item.description}</p>
               <div className="mt-4 flex items-center justify-between">
-                <span className="text-purple-600 font-bold">
+                <span className="text-red-600 font-bold">
                   {Number(item.price).toFixed(2)} €
                 </span>
                 <button
-                  className="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition"
+                  className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
                   onClick={() => addToCart({ ...item, image: item.image_url, quantity: 1 })}
                 >
                   Ajouter

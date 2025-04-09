@@ -43,7 +43,7 @@ export default function ProductDetail() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
       </div>
     );
   }
@@ -85,7 +85,7 @@ export default function ProductDetail() {
             <p className="text-gray-600 mb-6">{product.description}</p>
             
             <div className="mb-6">
-              <p className="text-2xl font-bold text-purple-600">
+              <p className="text-2xl font-bold text-red-600">
                 {Number(product.price).toFixed(2)} €
               </p>
             </div>
@@ -108,7 +108,7 @@ export default function ProductDetail() {
 
             <button
               onClick={handleAddToCart}
-              className="w-full bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition"
+              className="w-full bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition"
             >
               Ajouter au panier - {(Number(product.price) * quantity).toFixed(2)} €
             </button>

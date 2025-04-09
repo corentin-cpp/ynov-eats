@@ -29,7 +29,7 @@ export default function Cart() {
         <p className="text-gray-600 mb-4">Ajoutez des articles à votre panier pour commander</p>
         <button
           onClick={() => navigate('/menu')}
-          className="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition"
+          className="bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-700 transition"
         >
           Voir le menu
         </button>
@@ -96,7 +96,7 @@ export default function Cart() {
           </div>
           <button
             onClick={handleCheckout}
-            className="w-full bg-purple-600 text-white px-4 py-3 rounded-full hover:bg-purple-700 transition"
+            className="w-full bg-red-600 text-white px-4 py-3 rounded-full hover:bg-red-700 transition"
           >
             {user ? 'Commander' : 'Se connecter pour commander'}
           </button>

@@ -50,7 +50,7 @@ export default function Home() {
             </p>
             <Link
               to="/menu"
-              className="inline-block bg-purple-600 text-white px-8 py-3 rounded-full hover:bg-purple-700 transition"
+              className="inline-block bg-red-600 text-white px-8 py-3 rounded-full hover:bg-red-700 transition"
             >
               Commander maintenant
             </Link>
@@ -63,7 +63,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold">Catégories</h2>
           <Link
             to="/menu"
-            className="text-purple-600 flex items-center hover:text-purple-700"
+            className="text-red-600 flex items-center hover:text-red-700"
           >
             Voir tout <ChevronRight className="h-4 w-4" />
           </Link>

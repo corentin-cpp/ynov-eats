@@ -59,7 +59,7 @@ export default function Register() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
               required
               minLength={2}
             />
@@ -73,7 +73,7 @@ export default function Register() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
               required
             />
           </div>
@@ -86,7 +86,7 @@ export default function Register() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
               required
               minLength={6}
             />
@@ -103,7 +103,7 @@ export default function Register() {
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
               required
             />
           </div>
@@ -114,7 +114,7 @@ export default function Register() {
               id="isRestaurant"
               checked={isRestaurant}
               onChange={(e) => setIsRestaurant(e.target.checked)}
-              className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+              className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
             />
             <label htmlFor="isRestaurant" className="ml-2 block text-sm text-gray-700">
               Je suis un restaurateur
@@ -123,7 +123,7 @@ export default function Register() {
 
           <button
             type="submit"
-            className="w-full bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition"
+            className="w-full bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
           >
             S'inscrire
           </button>
@@ -131,7 +131,7 @@ export default function Register() {
 
         <p className="mt-4 text-center text-sm text-gray-600">
           Déjà un compte ?{' '}
-          <Link to="/login" className="text-purple-600 hover:text-purple-700">
+          <Link to="/login" className="text-red-600 hover:text-red-700">
             Se connecter
           </Link>
         </p>
