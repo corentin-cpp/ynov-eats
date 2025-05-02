@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { useStore } from '../store';
 import { Plus, Edit, Trash2 } from 'lucide-react';
-import { MenuItem } from '../types';
+import { MenuItem, Order, OrderHistory } from '../types';
 import { supabase } from '../lib/supabase';
 
 export default function RestaurantDashboard() {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<MenuItem | null>(null);
+  const [orderHistory, setOrderHistory] = useState<OrderHistory[]>([]);
+  const [order, setOrder] = useState<Order[]>([]);
+  const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const { user } = useStore();
   const [formData, setFormData] = useState({
@@ -19,20 +22,12 @@ export default function RestaurantDashboard() {
     category: 'burgers'
   });
 
-  const fakeOrders = [
-    { id: '1', item: 'Burger Classic', client: 'Jean Dupont', status: 'En cours' },
-    { id: '2', item: 'Pizza Reine', client: 'Claire Martin', status: 'En préparation' }
-  ];
-
-  const orderHistory = [
-    { id: '3', item: 'Sushi Saumon', client: 'Alexandre Dubois', date: '2025-04-29', price: 18.5 },
-    { id: '4', item: 'Dessert Chocolat', client: 'Sophie Leroy', date: '2025-04-28', price: 6.0 }
-  ];
-
   const totalRevenue = orderHistory.reduce((sum, order) => sum + order.price, 0);
 
   useEffect(() => {
     fetchMenuItems();
+    fetchOrderHistory();
+    fetchOrders();
   }, [user]);
 
   async function fetchMenuItems() {
@@ -55,6 +50,38 @@ export default function RestaurantDashboard() {
     }
   }
 
+  async function fetchOrderHistory() {
+    if(!user) return;
+    try {
+      const {data, error} =  await supabase.from('order_history')
+        .select('*')
+        .eq('restaurant_id', user.id);
+      if (error) {
+        console.error('Error fetching order history:', error);
+        return;
+      }
+      setOrderHistory( data || []);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  async function fetchOrders(){
+    if(!user) return;
+    try {
+      const {data, error} =  await supabase.from('orders')
+        .select('*')
+        .eq('restaurant_id', user.id);
+      if (error) {
+        console.error('Error fetching orders:', error);
+        return;
+      }
+      setOrder(data || []);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
   // ...handleSubmit, handleEdit, handleDelete identiques
 
   return (
@@ -71,7 +98,7 @@ export default function RestaurantDashboard() {
       <div>
         <h2 className="text-2xl font-semibold mb-4">Commandes en cours</h2>
         <div className="space-y-2">
-          {fakeOrders.map(order => (
+          {order.map(order => (
             <div key={order.id} className="bg-yellow-50 border border-yellow-300 p-4 rounded-lg shadow-sm">
               <div className="flex justify-between">
                 <div><strong>{order.item}</strong> - {order.client}</div>
