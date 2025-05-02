@@ -58,6 +58,12 @@ export default function Profile() {
           <button className="w-full bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
             Supprimer mon compte
           </button>
+          <button className="w-full bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+            onClick={() => {
+              useStore.getState().signOut();
+            }}>
+            Deconnexion
+          </button>
         </div>
       </div>
     </div>
