@@ -82,7 +82,86 @@ export default function RestaurantDashboard() {
     }
   }
 
-  // ...handleSubmit, handleEdit, handleDelete identiques
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user) return;
+
+    const menuItem = {
+      name: formData.name,
+      description: formData.description,
+      price: parseFloat(formData.price),
+      image_url: formData.image_url,
+      category: formData.category,
+      restaurant_id: user.id
+    };
+
+    try {
+      if (editingItem) {
+        const { error } = await supabase
+          .from('menu_items')
+          .update(menuItem)
+          .eq('id', editingItem.id);
+
+        if (error) throw error;
+      } else {
+        const { error } = await supabase
+          .from('menu_items')
+          .insert([menuItem]);
+
+        if (error) throw error;
+      }
+
+      await fetchMenuItems();
+      setIsModalOpen(false);
+      setEditingItem(null);
+      setFormData({
+        name: '',
+        description: '',
+        price: '',
+        image_url: '',
+        category: 'burgers'
+      });
+    } catch (error) {
+      console.error('Error saving menu item:', error);
+    }
+  };
+
+  const handleEdit = (item: MenuItem) => {
+    setEditingItem(item);
+    setFormData({
+      name: item.name,
+      description: item.description,
+      price: item.price.toString(),
+      image_url: item.image_url,
+      category: item.category
+    });
+    setIsModalOpen(true);
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm('Êtes-vous sûr de vouloir supprimer ce plat ?')) return;
+
+    try {
+      const { error } = await supabase
+        .from('menu_items')
+        .delete()
+        .eq('id', id);
+
+      if (error) throw error;
+
+      await fetchMenuItems();
+    } catch (error) {
+      console.error('Error deleting menu item:', error);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-red-600"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto space-y-12">
