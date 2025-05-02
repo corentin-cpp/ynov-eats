@@ -2,11 +2,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
 import { Trash2, ShoppingBag } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 export default function Cart() {
   const { cart, removeFromCart, clearCart, user } = useStore();
   const navigate = useNavigate();
-
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const deliveryFee = 2.99;
   const total = subtotal + deliveryFee;
@@ -17,9 +17,75 @@ export default function Cart() {
       return;
     }
     // Simulate checkout process
+    addPoint();
+    addOrderHistory();
+    addOrders();
     clearCart();
-    navigate('/profile');
+    navigate('/confirmation');
   };
+
+  async function addPoint(){
+    if(!user) return;
+
+    const { data: userData, error: userError } = await supabase
+    .from('users')
+    .select('points')
+    .eq('id', user.id);
+    if (userError) {
+      console.error('Error fetching user points:', userError);
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from('users')
+      .update({ points: (userData[0]?.points || 0) + Math.round(subtotal) * 10 })
+      .eq('id', user.id);
+    if (error) {
+      console.error('Error adding points:', error);
+    } else {
+      console.log('Points added:', data);
+    }
+  }
+
+  async function addOrderHistory(){
+    if(!user) return;
+    for(let i = 0; i < cart.length; i++){
+      const {data, error} = await supabase
+      .from('order_history')
+      .insert({
+        restaurant_id: cart[0].restaurant_id,
+        item: cart[i].name,
+        client: user.id,
+        price: (cart[i].price * cart[i].quantity).toFixed(2),
+        date: new Date().toISOString(),
+      });
+      if (error) {
+        console.error('Error adding order history:', error);
+      } else {
+        console.log('Order history added:', data);
+      }
+    }
+  }
+
+  async function addOrders(){
+    if(!user) return;
+    cart.forEach(async (item) => {
+      const { data, error } = await supabase
+        .from('orders')
+        .insert({
+          restaurant_id: item.restaurant_id,
+          item: item.name,
+          client: user.id,
+          status: 'En cours',
+          created_at: new Date().toISOString(),
+        });
+      if (error) {
+        console.error('Error adding order:', error);
+      } else {
+        console.log('Order added:', data);
+      }
+    });
+  }
 
   if (cart.length === 0) {
     return (

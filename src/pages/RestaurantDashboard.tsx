@@ -11,7 +11,6 @@ export default function RestaurantDashboard() {
   const [editingItem, setEditingItem] = useState<MenuItem | null>(null);
   const [orderHistory, setOrderHistory] = useState<OrderHistory[]>([]);
   const [order, setOrder] = useState<Order[]>([]);
-  const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const { user } = useStore();
   const [formData, setFormData] = useState({
@@ -51,25 +50,25 @@ export default function RestaurantDashboard() {
   }
 
   async function fetchOrderHistory() {
-    if(!user) return;
+    if (!user) return;
     try {
-      const {data, error} =  await supabase.from('order_history')
+      const { data, error } = await supabase.from('order_history')
         .select('*')
         .eq('restaurant_id', user.id);
       if (error) {
         console.error('Error fetching order history:', error);
         return;
       }
-      setOrderHistory( data || []);
+      setOrderHistory(data || []);
     } catch (error) {
       console.error('Error:', error);
     }
   }
 
-  async function fetchOrders(){
-    if(!user) return;
+  async function fetchOrders() {
+    if (!user) return;
     try {
-      const {data, error} =  await supabase.from('orders')
+      const { data, error } = await supabase.from('orders')
         .select('*')
         .eq('restaurant_id', user.id);
       if (error) {
@@ -177,14 +176,16 @@ export default function RestaurantDashboard() {
       <div>
         <h2 className="text-2xl font-semibold mb-4">Commandes en cours</h2>
         <div className="space-y-2">
-          {order.map(order => (
-            <div key={order.id} className="bg-yellow-50 border border-yellow-300 p-4 rounded-lg shadow-sm">
-              <div className="flex justify-between">
-                <div><strong>{order.item}</strong> - {order.client}</div>
-                <div className="text-sm text-yellow-700 font-medium">{order.status}</div>
+          {order
+            .filter(order => order.status !== 'Prête')
+            .map(order => (
+              <div key={order.id} className="bg-yellow-50 border border-yellow-300 p-4 rounded-lg shadow-sm">
+                <div className="flex justify-between">
+                  <div><strong>{order.item}</strong> - {}</div>
+                  <div className="text-sm text-yellow-700 font-medium">{order.status}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
 
@@ -327,10 +328,31 @@ export default function RestaurantDashboard() {
                   onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
                 >
+                  <option value="appetizers">Apéritifs</option>
+                  <option value="breakfast">Petit-déjeuner</option>
+                  <option value="brunch">Brunch</option>
                   <option value="burgers">Burgers</option>
-                  <option value="pizza">Pizzas</option>
-                  <option value="sushi">Sushi</option>
+                  <option value="cakes">Gâteaux</option>
                   <option value="desserts">Desserts</option>
+                  <option value="drinks">Boissons</option>
+                  <option value="fastfood">Fast Food</option>
+                  <option value="grills">Grillades</option>
+                  <option value="icecream">Glaces</option>
+                  <option value="pastries">Pâtisseries</option>
+                  <option value="pasta">Pâtes</option>
+                  <option value="pizza">Pizzas</option>
+                  <option value="salads">Salades</option>
+                  <option value="sandwiches">Sandwichs</option>
+                  <option value="seafood">Fruits de mer</option>
+                  <option value="sides">Accompagnements</option>
+                  <option value="snacks">Snacks</option>
+                  <option value="soups">Soupes</option>
+                  <option value="sushi">Sushi</option>
+                  <option value="tacos">Tacos</option>
+                  <option value="vegan">Vegan</option>
+                  <option value="vegetarian">Végétarien</option>
+                  <option value="wraps">Wraps</option>
+
                 </select>
               </div>
 

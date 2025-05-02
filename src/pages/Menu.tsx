@@ -12,8 +12,34 @@ export default function Menu() {
   const [loading, setLoading] = useState(true);
   const addToCart = useStore(state => state.addToCart);
 
-  const categories = ['all', 'burgers', 'pizza', 'sushi', 'desserts'];
-
+  const categories = [
+    'all',
+    'appetizers',
+    'breakfast',
+    'brunch',
+    'burgers',
+    'cakes',
+    'desserts',
+    'drinks',
+    'fastfood',
+    'grills',
+    'icecream',
+    'pastries',
+    'pasta',
+    'pizza',
+    'salads',
+    'sandwiches',
+    'seafood',
+    'sides',
+    'snacks',
+    'soups',
+    'sushi',
+    'tacos',
+    'vegan',
+    'vegetarian',
+    'wraps',
+  ];
+  
   useEffect(() => {
     async function fetchMenuItems() {
       try {
@@ -51,24 +77,28 @@ export default function Menu() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Notre Menu</h1>
-        <div className="flex space-x-2 overflow-x-auto pb-2">
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full whitespace-nowrap ${
-                selectedCategory === category
-                  ? 'bg-red-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
+<div className="mb-6">
+  <h1 className="text-3xl font-bold m-7">Notre Menu</h1>
+
+  <div className="overflow-x-auto px-4 pb-2">
+    <div className="flex space-x-3 min-w-max">
+      {categories.map(category => (
+        <button
+          key={category}
+          onClick={() => setSelectedCategory(category)}
+          className={`px-4 py-2 rounded-full whitespace-nowrap transition-all duration-200 ${
+            selectedCategory === category
+              ? 'bg-red-600 text-white'
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+          }`}
+        >
+          {category.charAt(0).toUpperCase() + category.slice(1)}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredItems.map(item => (
