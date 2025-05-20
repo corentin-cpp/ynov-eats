@@ -10,8 +10,9 @@ interface Store {
   addToCart: (item: CartItem) => void;
   removeFromCart: (itemId: string) => void;
   clearCart: () => void;
-  signIn: (email: string, password: string, isRestaurant: boolean) => Promise<void>;
+  signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string, name: string, isRestaurant: boolean) => Promise<void>;
+  isRestaurant: (user: User | null) => boolean;
   signOut: () => Promise<void>;
 }
 
@@ -38,7 +39,7 @@ export const useStore = create<Store>()(
           cart: state.cart.filter((item) => item.id !== itemId),
         })),
       clearCart: () => set({ cart: [] }),
-      signIn: async (email: string, password: string, isRestaurant: boolean) => {
+      signIn: async (email: string, password: string) => {
         const { data: { user }, error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -67,6 +68,13 @@ export const useStore = create<Store>()(
             });
           }
         }
+      },
+      isRestaurant: (user) => {
+        console.log(user);
+        if(user?.isRestaurant){
+          return true;
+        }
+        return false;
       },
       signUp: async (email: string, password: string, name: string, isRestaurant: boolean) => {
         const { data: { user }, error } = await supabase.auth.signUp({

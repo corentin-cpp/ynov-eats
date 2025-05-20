@@ -29,7 +29,7 @@ export default function Cart() {
 
     const { data: userData, error: userError } = await supabase
     .from('users')
-    .select('points')
+    .select('*')
     .eq('id', user.id);
     if (userError) {
       console.error('Error fetching user points:', userError);
@@ -38,7 +38,7 @@ export default function Cart() {
 
     const { data, error } = await supabase
       .from('users')
-      .update({ points: (userData[0]?.points || 0) + Math.round(subtotal) * 10 })
+      .update({ points: (userData[0]?.points || 0) + Math.round(subtotal) * 10, orders_count: (userData[0]?.order_count || 0) + 1 })
       .eq('id', user.id);
     if (error) {
       console.error('Error adding points:', error);

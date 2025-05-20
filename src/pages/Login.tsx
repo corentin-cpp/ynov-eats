@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useStore } from '../store';
@@ -5,7 +6,6 @@ import { useStore } from '../store';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isRestaurant, setIsRestaurant] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const signIn = useStore(state => state.signIn);
@@ -15,10 +15,14 @@ export default function Login() {
     setError('');
     
     try {
-      await signIn(email, password, isRestaurant);
-      navigate(isRestaurant ? '/restaurant/dashboard' : '/profile');
+      await signIn(email, password);
+      navigate('/restaurant/dashboard');
     } catch (err) {
-      setError('Erreur de connexion. Vérifiez vos identifiants.');
+      if (err instanceof Error && err.message === "Ce compte n'est pas un restaurant.") {
+        setError("Ce compte n'est pas un restaurant. Veuillez utiliser un compte restaurateur.");
+      } else {
+        setError('Erreur de connexion. Vérifiez vos identifiants.');
+      }
     }
   };
 
@@ -55,18 +59,6 @@ export default function Login() {
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500"
               required
             />
-          </div>
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="isRestaurant"
-              checked={isRestaurant}
-              onChange={(e) => setIsRestaurant(e.target.checked)}
-              className="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded"
-            />
-            <label htmlFor="isRestaurant" className="ml-2 block text-sm text-gray-700">
-              Je suis un restaurateur
-            </label>
           </div>
           <button
             type="submit"

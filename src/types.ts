@@ -27,7 +27,9 @@ export interface Order {
   id: string;
   restaurant_id: string;
   item: string;
-  client: string;
+  users: {
+    name: string;
+  };
   status: 'En cours' | 'En préparation' | 'Prête';
   created_at: string;
 }
@@ -36,7 +38,7 @@ export interface OrderHistory {
   id: string;
   restaurant_id: string;
   item: string;
-  client: string;
+  users: {name:string;};
   price: number;
   date: string;
 }
