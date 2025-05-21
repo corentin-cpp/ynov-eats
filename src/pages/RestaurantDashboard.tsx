@@ -192,7 +192,7 @@ export default function RestaurantDashboard() {
             .map(order => (
               <div key={order.id} className="bg-yellow-50 border border-yellow-300 p-4 rounded-lg shadow-sm">
                 <div className="flex justify-between">
-                  <div><strong>{order.item}</strong> - {order.users.name}</div>
+                  <div><strong>{order.item}</strong></div>
                   <div className="text-sm text-yellow-700 font-medium">{order.status}</div>
                 </div>
               </div>
@@ -233,7 +233,7 @@ export default function RestaurantDashboard() {
               {orderHistory.map(order => (
                 <tr key={order.id} className="text-center">
                   <td className="border px-4 py-2">{order.item}</td>
-                  <td className="border px-4 py-2">{order.users.name}</td>
+                  <td className="border px-4 py-2"></td>
                   <td className="border px-4 py-2">{order.date}</td>
                   <td className="border px-4 py-2">{order.price.toFixed(2)}</td>
                 </tr>
